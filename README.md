@@ -18,3 +18,12 @@ API documents can be found [here](https://github.com/alstn2468/Dynamic_Board_Bac
 ### ⚙️ Function
 
 ### ⏰ To Do
+
+- [ ] Document
+- [ ] View Logic
+- [ ] Model Class
+- [ ] Authentication
+- [ ] Url Configuration
+- [x] Model Structure Design
+- [x] CI Environmental Construction
+- [ ] CD Environmental Construction
