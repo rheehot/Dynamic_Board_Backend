@@ -13,6 +13,8 @@ API documents can be found [here](https://github.com/alstn2468/Dynamic_Board_Bac
 
 ### 🗺️ Diagram
 
+<img src="./Dynamic_Board_ERD.png" width="500" height="auto" />
+
 ### ⚙️ Function
 
 ### ⏰ To Do
