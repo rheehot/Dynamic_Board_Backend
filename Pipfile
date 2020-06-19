@@ -14,6 +14,7 @@ codecov = "*"
 django-dotenv = "*"
 django-cors-headers = "*"
 pyjwt = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
