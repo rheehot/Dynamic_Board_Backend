@@ -6,8 +6,6 @@ from users.models import User
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     """Register User model at admin panel
-    Set fieldsets BaseUserAdmin's fieldsets + user_fieldsets
-
     Inherit:
         UserAdmin as BaseUserAdmin
     Fields:
