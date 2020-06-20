@@ -8,8 +8,8 @@ class Board(AbstractTimeStamp):
     Inherit:
         AbstractTimeStamp
     Fields:
+        path             : CharField (PK)
         name             : CharField
-        path             : CharField
         write_permission : CharField
         create_user      : User model (1:N)
     Methods:
@@ -17,8 +17,8 @@ class Board(AbstractTimeStamp):
         save    : Remove special character in path
     """
 
-    name = models.CharField(max_length=60, primary_key=True)
-    path = models.CharField(max_length=20)
+    name = models.CharField(max_length=60)
+    path = models.CharField(max_length=20, primary_key=True)
     write_permission = models.CharField(
         choices=Permission.choices, max_length=6, default=Permission.NORMAL
     )
