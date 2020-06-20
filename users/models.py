@@ -17,7 +17,7 @@ class User(AbstractUser):
     NORMAL = "NORMAL"
 
     PERMISSION_CHOICES = (
-        (SUPER, "super"),
+        (SUPER, "SUPER"),
         (STAFF, "STAFF"),
         (NORMAL, "NORMAL"),
     )
