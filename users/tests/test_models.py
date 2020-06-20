@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.db import IntegrityError
 from users.models import User
+from common.models import Permission
 from tempfile import NamedTemporaryFile
 
 
@@ -27,7 +28,7 @@ class UserModelTest(TestCase):
             permission : User.STAFF
         """
         User.objects.create_user(
-            username="test_user_2", bio="test bio", permission=User.STAFF
+            username="test_user_2", bio="test bio", permission=Permission.STAFF
         )
 
     def test_user_create_success(self):
@@ -50,11 +51,11 @@ class UserModelTest(TestCase):
         Check test_user_1's permission is NORMAL
         """
         user = User.objects.get(username="test_user_1")
-        self.assertEqual(User.NORMAL, user.permission)
+        self.assertEqual(Permission.NORMAL, user.permission)
 
     def test_user_permission_set(self):
         user = User.objects.get(username="test_user_2")
-        self.assertEqual(User.STAFF, user.permission)
+        self.assertEqual(Permission.STAFF, user.permission)
 
     def test_user_bio_default(self):
         """User model bio field default value test
