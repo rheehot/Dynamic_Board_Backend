@@ -148,4 +148,5 @@ class PostVotedUserModelTest(TestCase):
 
         PostVotedUser.objects.create(user=user, post=post, is_upvoted=False)
 
+        post.refresh_from_db()
         self.assertEqual(1, post.downvote)
