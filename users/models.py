@@ -11,6 +11,8 @@ class User(AbstractUser):
         avatar     : ImageField
         bio        : CharField
         permission : CharField
+    Meta:
+        db_table   : users
     """
 
     avatar = models.ImageField(upload_to="avatars", default="default_avatar.png")
@@ -18,3 +20,6 @@ class User(AbstractUser):
     permission = models.CharField(
         choices=Permission.choices, max_length=6, default=Permission.NORMAL
     )
+
+    class Meta:
+        db_table = "users"

@@ -13,8 +13,10 @@ class Board(AbstractTimeStamp):
         write_permission : CharField
         create_user      : User model (1:N)
     Methods:
-        __str__ : Return board's name
-        save    : Remove special character in path
+        __str__          : Return board's name
+        save             : Remove special character in path
+    Meta:
+        db_table         : boards
     """
 
     name = models.CharField(max_length=60)
@@ -32,3 +34,6 @@ class Board(AbstractTimeStamp):
     def save(self, *args, **kwargs):
         self.path = sub(r"\W+", "", self.path)
         super().save(*args, **kwargs)
+
+    class Meta:
+        db_table = "boards"
