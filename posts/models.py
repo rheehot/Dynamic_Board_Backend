@@ -73,9 +73,9 @@ class PostVotedUser(AbstractTimeStamp):
 
     def save(self, *args, **kwargs):
         if self.is_upvoted:
-            self.post.upvote += 1
+            self.post.upvote = models.F("upvote") + 1
         else:
-            self.post.downvote += 1
+            self.post.downvote = models.F("downvote") + 1
 
         self.post.save()
         super().save(*args, **kwargs)
