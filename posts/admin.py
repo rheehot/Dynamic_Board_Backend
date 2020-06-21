@@ -1,5 +1,5 @@
 from django.contrib import admin
-from posts.models import Post, VotedPost
+from posts.models import Post, PostVotedUser
 
 
 @admin.register(Post)
@@ -25,14 +25,14 @@ class BoardAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(VotedPost)
-class VotedPostAdmin(admin.ModelAdmin):
-    """Register VotedPost model at admin panel
+@admin.register(PostVotedUser)
+class PostVotedUserAdmin(admin.ModelAdmin):
+    """Register PostVotedUser model at admin panel
     Inherit:
         admin.ModelAdmin
     Fields:
-        list_filter    : Fields used to filter VotedPost object in the list
-        list_display   : Fields visible in VotedPost object list
+        list_filter    : Fields used to filter PostVotedUser object in the list
+        list_display   : Fields visible in PostVotedUser object list
     """
 
     list_filter = ("is_upvoted",)

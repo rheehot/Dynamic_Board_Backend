@@ -26,7 +26,7 @@ class Post(AbstractTimeStamp):
     board = models.ForeignKey(
         "boards.Board", related_name="posts", on_delete=models.CASCADE
     )
-    voted_post = models.ManyToManyField("users.User", through="VotedPost")
+    post_voted_user = models.ManyToManyField("users.User", through="PostVotedUser")
     title = models.CharField(max_length=100)
     content = models.TextField()
     upvote = models.PositiveIntegerField(default=0)
@@ -39,7 +39,7 @@ class Post(AbstractTimeStamp):
         db_table = "posts"
 
 
-class VotedPost(AbstractTimeStamp):
+class PostVotedUser(AbstractTimeStamp):
     """User Voted Post Model
     Inherit:
         AbstractTimeStamp

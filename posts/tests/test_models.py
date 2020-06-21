@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from common.models import Permission
 from users.models import User
 from boards.models import Board
-from posts.models import Post, VotedPost
+from posts.models import Post, PostVotedUser
 
 
 class PostModelTest(TestCase):
@@ -67,18 +67,18 @@ class PostModelTest(TestCase):
         post = Post.objects.get(title="test title")
         self.assertEqual(str(post), post.title)
 
-    def test_post_voted_post(self):
-        """Post model voted_post field test
-        Check post's voted_post field's length is zero
+    def test_post_post_voted_user(self):
+        """Post model post_voted_user field test
+        Check post's post_voted_user field's length is zero
         """
         post = Post.objects.get(title="test title")
-        self.assertEqual(0, len(post.voted_post.all()))
+        self.assertEqual(0, len(post.post_voted_user.all()))
 
 
-class VotedPostModelTest(TestCase):
+class PostVotedUserModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        """Run only once when running VotedPostModelTest
+        """Run only once when running PostVotedUserModelTest
 
         User Fields :
             id       : 1
@@ -95,7 +95,7 @@ class VotedPostModelTest(TestCase):
             title       : test title
             content     : test content
 
-        VotedPost Fields :
+        PostVotedUser Fields :
             user       : test_user_1
             post       : test
             is_upvoted : true
@@ -105,47 +105,47 @@ class VotedPostModelTest(TestCase):
         post = Post.objects.create(
             create_user=user, board=board, title="test title", content="test content"
         )
-        VotedPost.objects.create(user=user, post=post)
+        PostVotedUser.objects.create(user=user, post=post)
 
-    def test_voted_post_create_success(self):
-        """VotedPost model creation success test
+    def test_post_voted_user_create_success(self):
+        """PostVotedUser model creation success test
         Check voted post's fields and instance's class name
         """
         post = Post.objects.get(title="test title")
         user = User.objects.get(username="test_user_1")
-        voted_post = VotedPost.objects.get(post=post, user=user)
+        post_voted_user = PostVotedUser.objects.get(post=post, user=user)
 
-        self.assertEqual(user, voted_post.user)
-        self.assertEqual(post, voted_post.post)
-        self.assertTrue(voted_post.is_upvoted)
-        self.assertEqual("VotedPost", voted_post.__class__.__name__)
+        self.assertEqual(user, post_voted_user.user)
+        self.assertEqual(post, post_voted_user.post)
+        self.assertTrue(post_voted_user.is_upvoted)
+        self.assertEqual("PostVotedUser", post_voted_user.__class__.__name__)
 
-    def test_voted_post_create_fail(self):
-        """VotedPost model creation fail test
+    def test_post_voted_user_create_fail(self):
+        """PostVotedUser model creation fail test
         Duplicate post and user with IntegrityError exception
         """
         with self.assertRaises(IntegrityError):
             post = Post.objects.get(title="test title")
             user = User.objects.get(username="test_user_1")
-            VotedPost.objects.create(post=post, user=user)
+            PostVotedUser.objects.create(post=post, user=user)
 
-    def test_voted_post_str_method(self):
-        """VotedPost model __str__ method test
-        Check VotedPost model's str method equal to expected_value
+    def test_post_voted_user_str_method(self):
+        """PostVotedUser model __str__ method test
+        Check PostVotedUser model's str method equal to expected_value
         """
         post = Post.objects.get(title="test title")
         user = User.objects.get(username="test_user_1")
-        voted_post = VotedPost.objects.get(post=post, user=user)
+        post_voted_user = PostVotedUser.objects.get(post=post, user=user)
         expected_value = "USER(test_user_1) / POST(test title) / BOARD(test) -> upvoted"
-        self.assertEqual(str(voted_post), expected_value)
+        self.assertEqual(str(post_voted_user), expected_value)
 
-    def test_voted_post_save_method(self):
-        """VotedPost model save method test
+    def test_post_voted_user_save_method(self):
+        """PostVotedUser model save method test
         Check increase Post object's upvote or downvote field
         """
         user = User.objects.create_user(username="test_user_2")
         post = Post.objects.get(title="test title")
 
-        VotedPost.objects.create(user=user, post=post, is_upvoted=False)
+        PostVotedUser.objects.create(user=user, post=post, is_upvoted=False)
 
         self.assertEqual(1, post.downvote)
