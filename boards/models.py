@@ -14,6 +14,7 @@ class Board(AbstractTimeStamp):
         create_user      : User model (1:N)
     Methods:
         __str__          : Return board's name
+        post_count       : Return related post counts
         save             : Remove special character in path
     Meta:
         db_table         : boards
@@ -27,6 +28,9 @@ class Board(AbstractTimeStamp):
     create_user = models.ForeignKey(
         "users.User", related_name="boards", on_delete=models.CASCADE
     )
+
+    def post_count(self):
+        return len(self.posts.all())
 
     def __str__(self):
         return self.name

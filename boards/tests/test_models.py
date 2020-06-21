@@ -100,6 +100,13 @@ class BoardModelTest(TestCase):
 
         self.assertEqual(board.path, "test")
 
+    def test_board_post_count_method(self):
+        """Board model post_count method test
+        Check test board's post_count method return 0
+        """
+        board = Board.objects.get(name="test")
+        self.assertEqual(board.post_count(), 0)
+
     def test_create_user_related_name(self):
         """Board model create_user field related_name test
         Check user access board objects using related_name

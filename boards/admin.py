@@ -18,6 +18,7 @@ class BoardAdmin(admin.ModelAdmin):
         "name",
         "path",
         "write_permission",
+        "post_count",
         "create_user",
         "created_at",
         "updated_at",
